@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-scent="vanilla">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensory Delivery System - Aetheria</title>
+  <meta name="description" content="Engage with our progressive reveal form and experience the beautiful high-fidelity SVG paper plane storyboard micro-interaction in Aetheria.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- BACKGROUND SHAPE OVERLAY CANVAS -->
+  <div class="overlay-canvas-container">
+    <canvas id="overlayCanvas"></canvas>
+  </div>
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Premium Header & Global Controls -->
+  <header class="app-header">
+    <div class="app-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <span>✦</span> Aetheria
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Nexus Portal</a></li>
+        <li><a href="sensory.html">Aromasphere</a></li>
+        <li><a href="dimensions.html">Dimensions</a></li>
+        <li><a href="feedback.html" class="active">Delivery System</a></li>
+      </ul>
+    </nav>
+
+    <div class="ambient-controls">
+      <div class="ambient-slider-panel">
+        <span id="timeDisplay">12:00</span>
+        <input type="range" min="0" max="1" step="0.05" value="0.5" class="ambient-range" id="ambientSlider" aria-label="Ambient Sync Simulator">
+        <span>Normal</span>
+      </div>
+
+      <button class="voice-indicator" id="voiceTrigger" aria-label="Toggle Voice Control">
+        <div class="mic-pulse"></div>
+        <span>Voice Guide</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="gallery-section" style="margin-top: 40px; text-align: center; margin-bottom: 40px;">
+      <span class="step-label">Sensory Preserves</span>
+      <h1 class="gallery-title" style="font-size: 3rem; margin-top: 10px;">Sensory Delivery Portal</h1>
+      <p style="color: var(--color-secondary); font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; margin-top: 10px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Communicate your sensory responses to our persistent vaults. Fill out each progressive section below.
+      </p>
+    </section>
+
+    <!-- FEATURE 6: PROGRESSIVE REVEAL FORM -->
+    <div class="progressive-form-container glass-panel voice-highlight-target" id="surveyPanel">
+      <form id="sensorySurvey" onsubmit="event.preventDefault();">
+        
+        <!-- Step 1: Signature -->
+        <div class="form-step active" data-step="0">
+          <span class="step-label">Section 01 / 03</span>
+          <h2 class="step-question">What is your signature name?</h2>
+          <input type="text" class="input-box" id="sigName" placeholder="Enter your name..." required autocomplete="off">
+          <div class="form-navigation">
+            <button type="button" class="form-btn form-btn-next">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Scent Dropdown -->
+        <div class="form-step" data-step="1">
+          <span class="step-label">Section 02 / 03</span>
+          <h2 class="step-question">Which primary scent evokes your focus?</h2>
+          <select class="input-box" id="sigScent" style="background-color: var(--bg-primary);">
+            <option value="citrus">Fresh Sicilian Citrus</option>
+            <option value="cedar">Earthy Atlas Cedarwood</option>
+            <option value="vanilla" selected>Cozy Madagascar Vanilla</option>
+            <option value="breeze">Oceanic Salted Breeze</option>
+          </select>
+          <div class="form-navigation">
+            <button type="button" class="form-btn form-btn-next">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Free Memory -->
+        <div class="form-step" data-step="2">
+          <span class="step-label">Section 03 / 03</span>
+          <h2 class="step-question">Describe a sensory memory or feeling:</h2>
+          <textarea class="input-box" id="sigText" rows="4" placeholder="Warm sunlight falling on pine needles..." required></textarea>
+          <div class="form-navigation">
+            <button type="button" class="form-btn form-btn-next">Complete & Deliver</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- FEATURE 4: MICRO-INTERACTION STORYBOARD FULL-SCREEN OVERLAY -->
+  <div class="storyboard-overlay" id="storyboardOverlay">
+    <div class="paper-plane-container">
+      
+      <!-- Looping dotted flight path vector -->
+      <svg class="trail-svg" viewBox="0 0 500 350">
+        <path id="flightPath" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6,6"
+              d="M 50 300 C 150 100, 250 50, 250 180 C 250 280, 150 280, 200 150 C 220 80, 380 50, 480 30" />
+      </svg>
+
+      <!-- Custom High-Fidelity SVG Paper Plane -->
+      <svg class="flying-plane" id="flyingPlane" viewBox="0 0 24 24">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+      </svg>
+
+      <!-- Final Success Reveal splash -->
+      <div class="flight-success-message" id="successMessage">
+        <div style="font-size: 4rem; margin-bottom: 20px; color: var(--color-accent);">✓</div>
+        <h2>Sensory Accords Delivered</h2>
+        <p style="font-size: 0.95rem; color: var(--color-secondary); margin-top: 10px; max-width: 320px;">
+          Your sensory memory has been packaged and flown into our global persistent archive.
+        </p>
+        <button class="submenu-btn" style="margin: 30px auto 0 auto;" onclick="window.location.href='index.html'">Return to Portal</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: var(--color-secondary);">
+    <p>© 2026 Aetheria Sensory Experiment. Built with modern Web APIs & Vanilla CSS.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

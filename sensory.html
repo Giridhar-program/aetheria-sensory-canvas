@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-scent="vanilla">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aromasphere & Live Sketchpad - Aetheria</title>
+  <meta name="description" content="Immerse in scent-inspired UI motifs, test high-performance adaptive grid density gallery layouts, and interact with the real-time abstract data sketchpad in Aetheria.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- BACKGROUND SHAPE OVERLAY CANVAS -->
+  <div class="overlay-canvas-container">
+    <canvas id="overlayCanvas"></canvas>
+  </div>
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Premium Header & Global Controls -->
+  <header class="app-header">
+    <div class="app-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <span>✦</span> Aetheria
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Nexus Portal</a></li>
+        <li><a href="sensory.html" class="active">Aromasphere</a></li>
+        <li><a href="dimensions.html">Dimensions</a></li>
+        <li><a href="feedback.html">Delivery System</a></li>
+      </ul>
+    </nav>
+
+    <div class="ambient-controls">
+      <div class="ambient-slider-panel">
+        <span id="timeDisplay">12:00</span>
+        <input type="range" min="0" max="1" step="0.05" value="0.5" class="ambient-range" id="ambientSlider" aria-label="Ambient Sync Simulator">
+        <span>Normal</span>
+      </div>
+
+      <button class="voice-indicator" id="voiceTrigger" aria-label="Toggle Voice Control">
+        <div class="mic-pulse"></div>
+        <span>Voice Guide</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- FEATURE 9: SCENT-INSPIRED UI MOTIFS SECTION -->
+    <section class="gallery-section" style="margin-top: 40px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <span class="step-label">Sense Experience</span>
+        <h1 class="gallery-title" style="font-size: 3rem; margin-top: 10px;">Scent-Inspired Aromasphere</h1>
+        <p style="color: var(--color-secondary); font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; margin-top: 10px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Evoke emotions through absolute digital visual metaphors. Select a scent profile below to instantly morph gradients, typography, and glow layers.
+        </p>
+      </div>
+
+      <!-- Scent Switch Panel -->
+      <div class="scent-picker-panel voice-highlight-target" id="scentPicker">
+        <button class="scent-card-option" data-scent-select="citrus" onclick="setScentTheme('citrus')">
+          <div class="scent-dot" style="background: HSL(45, 100%, 60%);"></div> Fresh Citrus
+        </button>
+        <button class="scent-card-option" data-scent-select="cedar" onclick="setScentTheme('cedar')">
+          <div class="scent-dot" style="background: HSL(120, 25%, 55%);"></div> Earthy Cedar
+        </button>
+        <button class="scent-card-option" data-scent-select="vanilla" onclick="setScentTheme('vanilla')">
+          <div class="scent-dot" style="background: HSL(34, 60%, 80%);"></div> Cozy Vanilla
+        </button>
+        <button class="scent-card-option" data-scent-select="breeze" onclick="setScentTheme('breeze')">
+          <div class="scent-dot" style="background: HSL(175, 80%, 55%);"></div> Oceanic Breeze
+        </button>
+      </div>
+    </section>
+
+    <!-- FEATURE 10: LIVE DATA SKETCHPAD SECTION -->
+    <section class="sketchpad-section">
+      <div style="margin-bottom: 24px;">
+        <span class="step-label">Generative Abstract Canvas</span>
+        <h2 style="font-size: 2.2rem; margin-top: 8px;">Live Olfactory Sketchpad</h2>
+        <p style="color: var(--color-secondary); font-size: 0.95rem;">Hover over geometric data clusters to inspect sensory metrics. Click nodes to modulate or accelerate frequency streams.</p>
+      </div>
+
+      <div class="sketchpad-container voice-highlight-target" id="sketchpadPanel">
+        <canvas id="sketchpadCanvas"></canvas>
+
+        <div class="sketchpad-overlay-ui">
+          <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent);">Spectral Sync</span>
+        </div>
+
+        <div class="sketchpad-instructions">
+          🖱 Mouse-over nodes to inspect. Left-click a node to modulate values.
+        </div>
+
+        <!-- Node Inspector UI Overlay Card -->
+        <div class="node-inspector-card" id="nodeInspector">
+          <h3 class="inspector-title">Active Node</h3>
+          <div class="inspector-data-row">
+            <span class="inspector-data-label">Diffused Intensity:</span>
+            <span class="inspector-data-val" data-val="intensity">0.0 ml</span>
+          </div>
+          <div class="inspector-data-row">
+            <span class="inspector-data-label">Saturation Index:</span>
+            <span class="inspector-data-val" data-val="index">0%</span>
+          </div>
+          <div class="inspector-data-row">
+            <span class="inspector-data-label">Coordinates:</span>
+            <span class="inspector-data-val" data-val="coord">X: 0, Y: 0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 8: ADAPTIVE GRID DENSITY SECTION -->
+    <section class="gallery-section">
+      <div class="gallery-toolbar">
+        <div>
+          <span class="step-label">Fluid Reflow Layout</span>
+          <h2 style="font-size: 2.2rem; margin-top: 8px;">Olfactive Gallery Notes</h2>
+        </div>
+
+        <!-- Density Toggle Panel -->
+        <div class="density-toggle-panel voice-highlight-target" id="densityPanel">
+          <button class="density-btn active" id="densitySpacious" data-density="spacious" onclick="toggleDensity('spacious')">Spacious View</button>
+          <button class="density-btn" id="densityCompact" data-density="compact" onclick="toggleDensity('compact')">Compact View</button>
+        </div>
+      </div>
+
+      <!-- Fluid Reflowing Cards Container -->
+      <div class="adaptive-grid spacious" id="adaptiveGrid">
+        <!-- Card 1 -->
+        <div class="gallery-card">
+          <div class="card-image">🍋</div>
+          <div class="card-content">
+            <div>
+              <div class="card-header-meta">
+                <span>Citrus Peak</span>
+                <span>Top Note</span>
+              </div>
+              <h3 class="card-title">Sicilian Bergamot</h3>
+              <p class="card-desc">An extremely sparkling and refreshing opening, combining bright lemon peel extracts with elegant, sunny floral facets.</p>
+            </div>
+            <div class="card-footer">
+              <span class="card-intensity">Intensity: 4.8 / 5</span>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--color-secondary);">Volatile</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="gallery-card">
+          <div class="card-image">🌲</div>
+          <div class="card-content">
+            <div>
+              <div class="card-header-meta">
+                <span>Woodland Core</span>
+                <span>Heart Note</span>
+              </div>
+              <h3 class="card-title">Atlas Cedarwood</h3>
+              <p class="card-desc">Grounding dry timber accents carrying traces of rich dark soil, pine needles, and damp mountain moss whispers.</p>
+            </div>
+            <div class="card-footer">
+              <span class="card-intensity">Intensity: 3.5 / 5</span>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--color-secondary);">Tenacious</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="gallery-card">
+          <div class="card-image">🍦</div>
+          <div class="card-content">
+            <div>
+              <div class="card-header-meta">
+                <span>Gourmand Comfort</span>
+                <span>Base Note</span>
+              </div>
+              <h3 class="card-title">Madagascar Vanilla</h3>
+              <p class="card-desc">Warm, rich, and comforting cream accords layered with subtle toasted amber resins, sweet rum, and soft musks.</p>
+            </div>
+            <div class="card-footer">
+              <span class="card-intensity">Intensity: 4.2 / 5</span>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--color-secondary);">Persistent</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="gallery-card">
+          <div class="card-image">🌊</div>
+          <div class="card-content">
+            <div>
+              <div class="card-header-meta">
+                <span>Marine Ozone</span>
+                <span>Top Note</span>
+              </div>
+              <h3 class="card-title">Ocean Breeze</h3>
+              <p class="card-desc">An atmospheric blend of marine accords, salty sea salt spray, brisk coastal air, and sun-bleached coastal driftwood.</p>
+            </div>
+            <div class="card-footer">
+              <span class="card-intensity">Intensity: 3.2 / 5</span>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--color-secondary);">Dynamic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: var(--color-secondary);">
+    <p>© 2026 Aetheria Sensory Experiment. Built with modern Web APIs & Vanilla CSS.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

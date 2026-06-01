@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-scent="vanilla">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aetheria - The Sensory & Data Canvas</title>
+  <meta name="description" content="Explore Aetheria: a high-fidelity sensory frontend blending ambient light syncing, voice highlights, morphing navigation tiles, and abstract data sketchpads.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- FEATURE 2: DYNAMIC SHAPE OVERLAY CANVAS -->
+  <div class="overlay-canvas-container">
+    <canvas id="overlayCanvas"></canvas>
+  </div>
+
+  <!-- Shared Floating Accent Bubbles -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Premium Header & Global Controls -->
+  <header class="app-header">
+    <div class="app-logo">
+      <span>✦</span> Aetheria
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Nexus Portal</a></li>
+        <li><a href="sensory.html">Aromasphere</a></li>
+        <li><a href="dimensions.html">Dimensions</a></li>
+        <li><a href="feedback.html">Delivery System</a></li>
+      </ul>
+    </nav>
+
+    <div class="ambient-controls">
+      <!-- FEATURE 3: CONTEXT-SENSITIVE AMBIENT SLIDER -->
+      <div class="ambient-slider-panel" id="ambientHighlighter">
+        <span id="timeDisplay">12:00</span>
+        <input type="range" min="0" max="1" step="0.05" value="0.5" class="ambient-range" id="ambientSlider" aria-label="Ambient Sync Simulator">
+        <span>Normal</span>
+      </div>
+
+      <!-- FEATURE 7: VOICE ASSISTED TRIGGER -->
+      <button class="voice-indicator" id="voiceTrigger" aria-label="Toggle Voice Control">
+        <div class="mic-pulse"></div>
+        <span>Voice Guide</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Introductory Headline Section -->
+  <main class="nexus-portal">
+    <section style="text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <h1 style="font-size: 3.8rem; margin-bottom: 20px; line-height: 1.05;">
+        Step Into a <span style="color: var(--color-accent); text-shadow: var(--scent-glow);">Living Canvas</span>
+      </h1>
+      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-secondary); line-height: 1.6;">
+        Welcome to Aetheria. An experimental visual portal blending ambient time syncs, kinetic vector shape overlays, and organic aroma motifs. Interact with the nexus tiles below.
+      </p>
+    </section>
+
+    <!-- FEATURE 1: MORPHING NAVIGATION TILES -->
+    <div class="portal-grid">
+      <!-- Tile 1: The Aromasphere -->
+      <div class="portal-tile voice-highlight-target" id="aromasphereTile" onclick="window.location.href='sensory.html'">
+        <div class="tile-overlay-gradient"></div>
+        <div class="tile-content">
+          <div class="tile-icon">✿</div>
+          <h2 class="tile-title">The Aromasphere</h2>
+          <p class="tile-desc">Shift dynamic CSS variable themes inspired by fragrances: Fresh Citrus, Earthy Cedar, Cozy Vanilla, and Oceanic Breeze.</p>
+          <div class="tile-submenu" onclick="event.stopPropagation();">
+            <ul class="submenu-links">
+              <li><button class="submenu-btn" onclick="window.location.href='sensory.html'">Enter Lab</button></li>
+              <li><button class="submenu-btn" onclick="highlightSelector('#aromasphereTile')">Highlight</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 2: Depth Scrolling -->
+      <div class="portal-tile voice-highlight-target" id="dimensionsTile" onclick="window.location.href='dimensions.html'">
+        <div class="tile-overlay-gradient"></div>
+        <div class="tile-content">
+          <div class="tile-icon">⌬</div>
+          <h2 class="tile-title">Layered Depth</h2>
+          <p class="tile-desc">Navigate a multi-speed parallax terrain with fluid hardware acceleration, custom blurs, and depth focus shifts.</p>
+          <div class="tile-submenu" onclick="event.stopPropagation();">
+            <ul class="submenu-links">
+              <li><button class="submenu-btn" onclick="window.location.href='dimensions.html'">Dive Deep</button></li>
+              <li><button class="submenu-btn" onclick="highlightSelector('#dimensionsTile')">Highlight</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 3: Progressive Form Delivery -->
+      <div class="portal-tile voice-highlight-target" id="deliveryTile" onclick="window.location.href='feedback.html'">
+        <div class="tile-overlay-gradient"></div>
+        <div class="tile-content">
+          <div class="tile-icon">✈</div>
+          <h2 class="tile-title">Flight Delivery</h2>
+          <p class="tile-desc">Provide sensory feedback through guided progressive reveal forms, triggering high-fidelity SVG flight storyboards.</p>
+          <div class="tile-submenu" onclick="event.stopPropagation();">
+            <ul class="submenu-links">
+              <li><button class="submenu-btn" onclick="window.location.href='feedback.html'">Launch Survey</button></li>
+              <li><button class="submenu-btn" onclick="highlightSelector('#deliveryTile')">Highlight</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 4: Ambient Core -->
+      <div class="portal-tile voice-highlight-target" id="voiceTile">
+        <div class="tile-overlay-gradient"></div>
+        <div class="tile-content">
+          <div class="tile-icon">🎙</div>
+          <h2 class="tile-title">Aural Commands</h2>
+          <p class="tile-desc">Click "Voice Guide" in the top bar and speak: "Citrus Theme", "Cedar Theme", "Compact Grid", "Dimensions", or "Home".</p>
+          <div class="tile-submenu" onclick="event.stopPropagation();">
+            <ul class="submenu-links">
+              <li><button class="submenu-btn" onclick="document.getElementById('voiceTrigger').click()">Start Voice</button></li>
+              <li><button class="submenu-btn" onclick="highlightSelector('#voiceTile')">Highlight</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: var(--color-secondary);">
+    <p>© 2026 Aetheria Sensory Experiment. Built with modern Web APIs & Vanilla CSS.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
